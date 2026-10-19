@@ -36,7 +36,7 @@
 
     .hub-container {
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
       background: radial-gradient(circle at top, var(--maroon) 0%, #111 75%);
       border: 1px solid rgba(212, 175, 55, 0.4);
       border-radius: 24px;
@@ -68,14 +68,14 @@
     .hub-subtitle {
       font-size: 0.88rem;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
-    /* أزرار القائمة المتكاملة */
+    /* أزرار القائمة الرئيسية */
     .hub-links {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       margin-bottom: 24px;
     }
 
@@ -87,11 +87,12 @@
       border: 1px solid var(--card-border);
       color: var(--text);
       text-decoration: none;
-      padding: 16px 20px;
+      padding: 15px 20px;
       border-radius: 14px;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: all 0.3s ease;
+      cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
@@ -115,6 +116,69 @@
       color: #000;
     }
 
+    /* لوحة المحتوى التفاعلي (تظهر عند النقر على أي زر) */
+    .content-panel {
+      display: none;
+      background: #1A1814;
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: right;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .content-panel.active {
+      display: block;
+    }
+
+    .content-panel h3 {
+      font-size: 1.1rem;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: var(--gold);
+    }
+
+    .content-panel p, .content-panel ul {
+      font-size: 0.88rem;
+      color: #DDD;
+      margin-bottom: 12px;
+    }
+
+    .content-panel ul {
+      list-style-type: disc;
+      padding-right: 20px;
+    }
+
+    .content-panel ul li {
+      margin-bottom: 6px;
+    }
+
+    .action-link-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
     /* تذييل البطاقة */
     .hub-footer {
       font-size: 0.75rem;
@@ -127,6 +191,11 @@
     .hub-footer strong {
       color: var(--gold-light);
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -134,36 +203,76 @@
   <div class="hub-container">
     <span class="badge">منظومة NFC التفاعلية ⚡</span>
     <div class="hub-title">تجربة الضيافة الذكية</div>
-    <div class="hub-subtitle">اختر الخدمة أدناه لتجربة التفاعل الفوري عبر الشريحة</div>
+    <div class="hub-subtitle">اختر الخدمة أدناه لتجربة تفاعل الأزرار فوراً</div>
 
-    <div class="hub-links">
+    <!-- القائمة الرئيسية للأزرار -->
+    <div class="hub-links" id="mainMenu">
       <!-- 1. المنيو أو الخدمات -->
-      <a href="#menu" class="hub-btn" onclick="alert('هنا سيتم فتح قائمة المنيو الرقمية أو جدول الحصص الخاص بالنشاط'); return false;">
+      <button class="hub-btn" onclick="showPanel('menuPanel')">
         <span class="icon">☕</span>
         <span>تصفح المنيو / جدول الخدمات</span>
         <span class="arrow">←</span>
-      </a>
+      </button>
 
       <!-- 2. تقييم جوجل -->
-      <a href="#review" class="hub-btn" onclick="alert('هنا يتم توجيه العميل مباشرة لتقييم المكان بـ 5 نجوم على خرائط جوجل'); return false;">
+      <button class="hub-btn" onclick="showPanel('reviewPanel')">
         <span class="icon">⭐</span>
         <span>قيمنا على خرائط جوجل (Google Reviews)</span>
         <span class="arrow">←</span>
-      </a>
+      </button>
 
       <!-- 3. الكارت الإلكتروني -->
-      <a href="#card" class="hub-btn" onclick="alert('هنا يتم عرض الكارت الإلكتروني للعميل أو بطاقة العضوية والـ VIP'); return false;">
+      <button class="hub-btn" onclick="showPanel('cardPanel')">
         <span class="icon">📇</span>
         <span>الكارت الإلكتروني / بطاقة الولاء (VIP)</span>
         <span class="arrow">←</span>
-      </a>
+      </button>
 
       <!-- 4. التواصل والعروض -->
-      <a href="#contact" class="hub-btn" onclick="alert('هنا تفتح قنوات التواصل الاجتماعي وحجز المواعيد أو العروض الحصرية'); return false;">
+      <button class="hub-btn" onclick="showPanel('contactPanel')">
         <span class="icon">🌐</span>
         <span>العروض الحصرية وحسابات التواصل</span>
         <span class="arrow">←</span>
-      </a>
+      </button>
+    </div>
+
+    <!-- 1. لوحة المنيو -->
+    <div id="menuPanel" class="content-panel">
+      <h3><span>☕ المنيو / جدول الخدمات</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <p>استعراض سريع لقائمة المشروبات أو جدول الحصص الرياضية:</p>
+      <ul>
+        <li>الإسبريسو والقهوة المختصة (حار / بارد)</li>
+        <li>المخبوزات والحلويات الطازجة يومياً</li>
+        <li>جدول الحصص التدريبية الأسبوعية (للصالات الرياضية)</li>
+      </ul>
+      <a href="#" class="action-link-btn" onclick="alert('هنا ينتقل العميل للمنيو الكامل بصيغة PDF أو صفحة تفاعلية'); return false;">فتح القائمة الكاملة</a>
+    </div>
+
+    <!-- 2. لوحة تقييم جوجل -->
+    <div id="reviewPanel" class="content-panel">
+      <h3><span>⭐ تقييمات جوجل</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <p>نسعد دائماً برأيك لتطوير خدمتنا وتقديم الأفضل لك:</p>
+      <p style="text-align: center; font-size: 1.2rem; color: var(--gold);">★★★★★ (5.0 نجوم)</p>
+      <a href="https://maps.google.com" target="_blank" class="action-link-btn">تقييمنا الآن على خرائط جوجل</a>
+    </div>
+
+    <!-- 3. لوحة الكارت الإلكتروني -->
+    <div id="cardPanel" class="content-panel">
+      <h3><span>📇 الكارت الإلكتروني وبطاقة الولاء</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <p>بطاقة العضوية الخاصة بك (VIP Member Pass):</p>
+      <p><strong>اسم العميل:</strong> ضيف مميز<br><strong>رقم العضوية:</strong> #VIP-2026-99<br><strong>المزايا:</strong> خصم 15% على المشتريات القادمة</p>
+      <a href="#" class="action-link-btn" onclick="alert('تم حفظ البطاقة في محفظة الهاتف بنجاح!'); return false;">حفظ البطاقة في الهاتف</a>
+    </div>
+
+    <!-- 4. لوحة التواصل والعروض -->
+    <div id="contactPanel" class="content-panel">
+      <h3><span>🌐 التواصل والعروض</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <p>تابعنا على منصات التواصل الاجتماعي واستفد من عروضنا الموسمية:</p>
+      <ul>
+        <li>حسابنا على إنستغرام وتويتر (X)</li>
+        <li>عروض نهاية الأسبوع الحصرية</li>
+      </ul>
+      <a href="https://wa.me/966502777884" target="_blank" class="action-link-btn">تواصل عبر واتساب المباشر</a>
     </div>
 
     <div class="hub-footer">
@@ -171,6 +280,22 @@
       جميع الحقوق محفوظة © 2026
     </div>
   </div>
+
+  <script>
+    function showPanel(panelId) {
+      // إخفاء جميع اللوحة المفتوحة أولاً
+      const panels = document.querySelectorAll('.content-panel');
+      panels.forEach(panel => panel.classList.remove('active'));
+      
+      // إظهار اللوحة المطلوبة
+      document.getElementById(panelId).classList.add('active');
+    }
+
+    function closePanel() {
+      const panels = document.querySelectorAll('.content-panel');
+      panels.forEach(panel => panel.classList.remove('active'));
+    }
+  </script>
 
 </body>
 </html>
