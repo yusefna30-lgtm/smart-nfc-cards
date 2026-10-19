@@ -75,7 +75,7 @@
     .hub-links {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 20px;
     }
 
@@ -87,10 +87,10 @@
       border: 1px solid var(--card-border);
       color: var(--text);
       text-decoration: none;
-      padding: 14px 18px;
+      padding: 13px 16px;
       border-radius: 14px;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       transition: all 0.3s ease;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -235,7 +235,7 @@
   <div class="hub-container">
     <span class="badge">منظومة NFC التفاعلية ⚡</span>
     <div class="hub-title">تجربة الضيافة الذكية</div>
-    <div class="hub-subtitle">منيو، تقييمات، وبطاقات الموظفين الذكية</div>
+    <div class="hub-subtitle">منيو، تقييمات، بطاقات، وعروض حصرية</div>
 
     <!-- الأزرار الرئيسية -->
     <div class="hub-links">
@@ -247,7 +247,7 @@
 
       <button class="hub-btn" onclick="showPanel('staffPanel')">
         <span class="icon">👤</span>
-        <span>بطاقة الموظف وتقييم الأداء الفردي</span>
+        <span>تقييم خدمة الموظف الفردي</span>
         <span class="arrow">←</span>
       </button>
 
@@ -260,6 +260,12 @@
       <button class="hub-btn" onclick="showPanel('cardPanel')">
         <span class="icon">📇</span>
         <span>الكارت الإلكتروني (نبيل النمر)</span>
+        <span class="arrow">←</span>
+      </button>
+
+      <button class="hub-btn" onclick="showPanel('contactPanel')">
+        <span class="icon">🌐</span>
+        <span>العروض الحصرية وحسابات التواصل</span>
         <span class="arrow">←</span>
       </button>
     </div>
@@ -321,6 +327,17 @@
         <p style="color: var(--gold); direction: ltr; font-weight: bold;">+966 50 277 7884</p>
       </div>
       <a href="https://wa.me/966502777884" target="_blank" class="action-link-btn">حفظ الاتصال / مراسلة واتساب</a>
+    </div>
+
+    <!-- 5. لوحة التواصل والعروض -->
+    <div id="contactPanel" class="content-panel">
+      <h3><span>🌐 التواصل والعروض الحصرية</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <p style="font-size: 0.85rem; margin-bottom: 8px;">تابعنا واستفد من عروضنا الموسمية:</p>
+      <ul style="list-style: disc; padding-right: 18px; font-size: 0.82rem; margin-bottom: 12px; text-align: right;">
+        <li>عرض نهاية الأسبوع: خصم 20% على المشروبات الباردة</li>
+        <li>حساباتنا الرسمية على المنصات (انستغرام وتويتر)</li>
+      </ul>
+      <a href="https://wa.me/966502777884" target="_blank" class="action-link-btn">تواصل مع الإدارة عبر واتساب</a>
     </div>
 
     <div class="hub-footer">
