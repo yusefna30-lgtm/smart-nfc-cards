@@ -87,10 +87,10 @@
       border: 1px solid var(--card-border);
       color: var(--text);
       text-decoration: none;
-      padding: 15px 20px;
+      padding: 14px 18px;
       border-radius: 14px;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       transition: all 0.3s ease;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -103,7 +103,7 @@
       transform: translateY(-2px);
     }
 
-    .hub-btn span.icon { font-size: 1.2rem; }
+    .hub-btn span.icon { font-size: 1.1rem; }
     .hub-btn span.arrow { color: var(--gold); font-size: 1rem; }
     .hub-btn:hover span.arrow { color: #000; }
 
@@ -166,6 +166,29 @@
     }
     .add-btn:hover { background: var(--gold-light); }
 
+    /* صندوق تقييم الموظف */
+    .staff-card {
+      background: #111;
+      border: 1px solid #26221A;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .staff-card h4 { font-size: 0.95rem; color: #FFF; margin-bottom: 2px; }
+    .staff-card p { font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
+    
+    .stars-container {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin: 10px 0;
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
+    .star { color: #555; transition: 0.2s; }
+    .star.selected { color: var(--gold); }
+
     /* بطاقة الكارت الشخصي */
     .digital-card-box {
       background: #111;
@@ -212,13 +235,19 @@
   <div class="hub-container">
     <span class="badge">منظومة NFC التفاعلية ⚡</span>
     <div class="hub-title">تجربة الضيافة الذكية</div>
-    <div class="hub-subtitle">اختر الخدمة أدناه لتجربة المنيو والبطاقة الشخصية</div>
+    <div class="hub-subtitle">منيو، تقييمات، وبطاقات الموظفين الذكية</div>
 
     <!-- الأزرار الرئيسية -->
     <div class="hub-links">
       <button class="hub-btn" onclick="showPanel('menuPanel')">
         <span class="icon">☕</span>
         <span>تصفح المنيو وإرسال الطلبات</span>
+        <span class="arrow">←</span>
+      </button>
+
+      <button class="hub-btn" onclick="showPanel('staffPanel')">
+        <span class="icon">👤</span>
+        <span>بطاقة الموظف وتقييم الأداء الفردي</span>
         <span class="arrow">←</span>
       </button>
 
@@ -233,19 +262,11 @@
         <span>الكارت الإلكتروني (نبيل النمر)</span>
         <span class="arrow">←</span>
       </button>
-
-      <button class="hub-btn" onclick="showPanel('contactPanel')">
-        <span class="icon">🌐</span>
-        <span>تواصل مباشر وعروض حصرية</span>
-        <span class="arrow">←</span>
-      </button>
     </div>
 
-    <!-- 1. لوحة المنيو والطلبات التفاعلية -->
+    <!-- 1. لوحة المنيو والطلبات -->
     <div id="menuPanel" class="content-panel">
-      <h3><span>☕ المنيو السريع (اختر طلبك)</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
-      <p style="font-size: 0.82rem; color: var(--muted); margin-bottom: 10px;">جرب إضافة منتج لسلتك:</p>
-      
+      <h3><span>☕ المنيو السريع</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
       <div class="menu-item">
         <div class="menu-info">
           <h4>سبيشل كافيه لاتيه</h4>
@@ -262,26 +283,36 @@
         <button class="add-btn" onclick="addToCart('فلات وايت فاخر')">إضافة +</button>
       </div>
 
-      <div class="menu-item">
-        <div class="menu-info">
-          <h4>كيكة التمر بالمكسرات</h4>
-          <span>24 ر.س</span>
-        </div>
-        <button class="add-btn" onclick="addToCart('كيكة التمر بالمكسرات')">إضافة +</button>
-      </div>
-
       <div id="cartStatus" style="margin-top: 10px; font-size: 0.85rem; color: var(--gold-light); text-align: center; font-weight: bold;"></div>
     </div>
 
-    <!-- 2. لوحة تقييم جوجل -->
-    <div id="reviewPanel" class="content-panel">
-      <h3><span>⭐ تقييمات جوجل</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
-      <p>ساعدنا في الارتقاء بجودة الخدمة:</p>
-      <p style="text-align: center; font-size: 1.2rem; color: var(--gold); margin: 6px 0;">★★★★★ (5.0 نجوم)</p>
-      <a href="https://maps.google.com" target="_blank" class="action-link-btn">تقييمنا الآن على خرائط جوجل</a>
+    <!-- 2. لوحة تقييم الموظف الفردي -->
+    <div id="staffPanel" class="content-panel">
+      <h3><span>👤 تقييم خدمة الموظف</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <div class="staff-card">
+        <h4>محمد الشمري</h4>
+        <p>باريستا مختص (طاولة رقم 4)</p>
+        <div class="stars-container" id="starContainer">
+          <span class="star" onclick="rateStaff(1)">★</span>
+          <span class="star" onclick="rateStaff(2)">★</span>
+          <span class="star" onclick="rateStaff(3)">★</span>
+          <span class="star" onclick="rateStaff(4)">★</span>
+          <span class="star" onclick="rateStaff(5)">★</span>
+        </div>
+        <p id="rateMsg" style="font-size: 0.78rem; color: var(--gold-light); min-height: 18px;"></p>
+      </div>
+      <a href="https://wa.me/966502777884" class="action-link-btn" style="font-size: 0.78rem; padding: 8px;">طلب مساعدة أو استفسار من الإدارة</a>
     </div>
 
-    <!-- 3. لوحة الكارت الإلكتروني الشخصي -->
+    <!-- 3. لوحة تقييم جوجل -->
+    <div id="reviewPanel" class="content-panel">
+      <h3><span>⭐ تقييمات جوجل</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <p>قيم فرعنا الرئيسي على خرائط جوجل:</p>
+      <p style="text-align: center; font-size: 1.2rem; color: var(--gold); margin: 6px 0;">★★★★★ (5.0 نجوم)</p>
+      <a href="https://maps.google.com" target="_blank" class="action-link-btn">الانتقال لتقييم جوجل</a>
+    </div>
+
+    <!-- 4. لوحة الكارت الإلكتروني الشخصي -->
     <div id="cardPanel" class="content-panel">
       <h3><span>📇 البطاقة التعريفية الرقمية</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
       <div class="digital-card-box">
@@ -290,13 +321,6 @@
         <p style="color: var(--gold); direction: ltr; font-weight: bold;">+966 50 277 7884</p>
       </div>
       <a href="https://wa.me/966502777884" target="_blank" class="action-link-btn">حفظ الاتصال / مراسلة واتساب</a>
-    </div>
-
-    <!-- 4. لوحة التواصل -->
-    <div id="contactPanel" class="content-panel">
-      <h3><span>🌐 التواصل والعروض</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
-      <p>استفسر عن دمج هذه التقنية في نشاطك التجاري:</p>
-      <a href="https://wa.me/966502777884" target="_blank" class="action-link-btn">تواصل عبر واتساب المباشر</a>
     </div>
 
     <div class="hub-footer">
@@ -319,10 +343,20 @@
 
     function addToCart(itemName) {
       const statusDiv = document.getElementById('cartStatus');
-      statusDiv.innerHTML = `✓ تمت إضافة (${itemName}) إلى الطلب بنجاح!`;
-      setTimeout(() => {
-        statusDiv.innerHTML = '';
-      }, 3000);
+      statusDiv.innerHTML = `✓ تمت إضافة (${itemName}) للطلب بنجاح!`;
+      setTimeout(() => { statusDiv.innerHTML = ''; }, 3000);
+    }
+
+    function rateStaff(stars) {
+      const allStars = document.querySelectorAll('.star');
+      allStars.forEach((star, index) => {
+        if (index < stars) {
+          star.classList.add('selected');
+        } else {
+          star.classList.remove('selected');
+        }
+      });
+      document.getElementById('rateMsg').innerHTML = `✓ شكراً لتقييمك (${stars}/5 نجوم) وتم إرسالها للإدارة!`;
     }
   </script>
 
