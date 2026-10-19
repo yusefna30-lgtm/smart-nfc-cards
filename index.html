@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>البطاقة التجريبية الذكية | Smart Phygital Hub</title>
+  <title>منظومة الضيافة الذكية | نبيل النمر</title>
   <style>
     :root {
       --bg: #0A0A0A;
@@ -58,17 +58,17 @@
     }
 
     .hub-title {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 900;
       color: var(--gold);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       letter-spacing: 1px;
     }
 
     .hub-subtitle {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     /* أزرار القائمة الرئيسية */
@@ -76,7 +76,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .hub-btn {
@@ -103,39 +103,28 @@
       transform: translateY(-2px);
     }
 
-    .hub-btn span.icon {
-      font-size: 1.2rem;
-    }
+    .hub-btn span.icon { font-size: 1.2rem; }
+    .hub-btn span.arrow { color: var(--gold); font-size: 1rem; }
+    .hub-btn:hover span.arrow { color: #000; }
 
-    .hub-btn span.arrow {
-      color: var(--gold);
-      font-size: 1rem;
-    }
-
-    .hub-btn:hover span.arrow {
-      color: #000;
-    }
-
-    /* لوحة المحتوى التفاعلي (تظهر عند النقر على أي زر) */
+    /* لوحة المحتوى التفاعلي */
     .content-panel {
       display: none;
       background: #1A1814;
       border: 1px solid var(--gold);
       border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 24px;
+      padding: 18px;
+      margin-bottom: 20px;
       text-align: right;
       animation: fadeIn 0.3s ease;
     }
 
-    .content-panel.active {
-      display: block;
-    }
+    .content-panel.active { display: block; }
 
     .content-panel h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--gold-light);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -148,49 +137,69 @@
       font-size: 1.2rem;
       cursor: pointer;
     }
-    .close-btn:hover {
-      color: var(--gold);
+    .close-btn:hover { color: var(--gold); }
+
+    /* تصميم عناصر المنيو التفاعلية */
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      border: 1px solid #26221A;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 8px;
     }
 
-    .content-panel p, .content-panel ul {
-      font-size: 0.88rem;
-      color: #DDD;
+    .menu-info h4 { font-size: 0.9rem; color: #FFF; margin-bottom: 2px; }
+    .menu-info span { font-size: 0.8rem; color: var(--gold); font-weight: bold; }
+
+    .add-btn {
+      background: var(--gold);
+      color: #000;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .add-btn:hover { background: var(--gold-light); }
+
+    /* بطاقة الكارت الشخصي */
+    .digital-card-box {
+      background: #111;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
       margin-bottom: 12px;
     }
-
-    .content-panel ul {
-      list-style-type: disc;
-      padding-right: 20px;
-    }
-
-    .content-panel ul li {
-      margin-bottom: 6px;
-    }
+    .digital-card-box h4 { font-size: 1.1rem; color: var(--gold); margin-bottom: 4px; }
+    .digital-card-box p { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
 
     .action-link-btn {
       display: inline-block;
       background: var(--gold);
       color: #000;
       text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
       font-weight: 800;
       font-size: 0.85rem;
+      width: 100%;
+      text-align: center;
       margin-top: 8px;
     }
 
-    /* تذييل البطاقة */
     .hub-footer {
       font-size: 0.75rem;
       color: #666;
       border-top: 1px dashed rgba(212, 175, 55, 0.2);
-      padding-top: 16px;
-      margin-top: 10px;
+      padding-top: 14px;
+      margin-top: 8px;
     }
-
-    .hub-footer strong {
-      color: var(--gold-light);
-    }
+    .hub-footer strong { color: var(--gold-light); }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(5px); }
@@ -203,97 +212,117 @@
   <div class="hub-container">
     <span class="badge">منظومة NFC التفاعلية ⚡</span>
     <div class="hub-title">تجربة الضيافة الذكية</div>
-    <div class="hub-subtitle">اختر الخدمة أدناه لتجربة تفاعل الأزرار فوراً</div>
+    <div class="hub-subtitle">اختر الخدمة أدناه لتجربة المنيو والبطاقة الشخصية</div>
 
-    <!-- القائمة الرئيسية للأزرار -->
-    <div class="hub-links" id="mainMenu">
-      <!-- 1. المنيو أو الخدمات -->
+    <!-- الأزرار الرئيسية -->
+    <div class="hub-links">
       <button class="hub-btn" onclick="showPanel('menuPanel')">
         <span class="icon">☕</span>
-        <span>تصفح المنيو / جدول الخدمات</span>
+        <span>تصفح المنيو وإرسال الطلبات</span>
         <span class="arrow">←</span>
       </button>
 
-      <!-- 2. تقييم جوجل -->
       <button class="hub-btn" onclick="showPanel('reviewPanel')">
         <span class="icon">⭐</span>
-        <span>قيمنا على خرائط جوجل (Google Reviews)</span>
+        <span>تقييم المكان على خرائط جوجل</span>
         <span class="arrow">←</span>
       </button>
 
-      <!-- 3. الكارت الإلكتروني -->
       <button class="hub-btn" onclick="showPanel('cardPanel')">
         <span class="icon">📇</span>
-        <span>الكارت الإلكتروني / بطاقة الولاء (VIP)</span>
+        <span>الكارت الإلكتروني (نبيل النمر)</span>
         <span class="arrow">←</span>
       </button>
 
-      <!-- 4. التواصل والعروض -->
       <button class="hub-btn" onclick="showPanel('contactPanel')">
         <span class="icon">🌐</span>
-        <span>العروض الحصرية وحسابات التواصل</span>
+        <span>تواصل مباشر وعروض حصرية</span>
         <span class="arrow">←</span>
       </button>
     </div>
 
-    <!-- 1. لوحة المنيو -->
+    <!-- 1. لوحة المنيو والطلبات التفاعلية -->
     <div id="menuPanel" class="content-panel">
-      <h3><span>☕ المنيو / جدول الخدمات</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
-      <p>استعراض سريع لقائمة المشروبات أو جدول الحصص الرياضية:</p>
-      <ul>
-        <li>الإسبريسو والقهوة المختصة (حار / بارد)</li>
-        <li>المخبوزات والحلويات الطازجة يومياً</li>
-        <li>جدول الحصص التدريبية الأسبوعية (للصالات الرياضية)</li>
-      </ul>
-      <a href="#" class="action-link-btn" onclick="alert('هنا ينتقل العميل للمنيو الكامل بصيغة PDF أو صفحة تفاعلية'); return false;">فتح القائمة الكاملة</a>
+      <h3><span>☕ المنيو السريع (اختر طلبك)</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-bottom: 10px;">جرب إضافة منتج لسلتك:</p>
+      
+      <div class="menu-item">
+        <div class="menu-info">
+          <h4>سبيشل كافيه لاتيه</h4>
+          <span>18 ر.س</span>
+        </div>
+        <button class="add-btn" onclick="addToCart('سبيشل كافيه لاتيه')">إضافة +</button>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-info">
+          <h4>فلات وايت فاخر</h4>
+          <span>16 ر.س</span>
+        </div>
+        <button class="add-btn" onclick="addToCart('فلات وايت فاخر')">إضافة +</button>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-info">
+          <h4>كيكة التمر بالمكسرات</h4>
+          <span>24 ر.س</span>
+        </div>
+        <button class="add-btn" onclick="addToCart('كيكة التمر بالمكسرات')">إضافة +</button>
+      </div>
+
+      <div id="cartStatus" style="margin-top: 10px; font-size: 0.85rem; color: var(--gold-light); text-align: center; font-weight: bold;"></div>
     </div>
 
     <!-- 2. لوحة تقييم جوجل -->
     <div id="reviewPanel" class="content-panel">
       <h3><span>⭐ تقييمات جوجل</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
-      <p>نسعد دائماً برأيك لتطوير خدمتنا وتقديم الأفضل لك:</p>
-      <p style="text-align: center; font-size: 1.2rem; color: var(--gold);">★★★★★ (5.0 نجوم)</p>
+      <p>ساعدنا في الارتقاء بجودة الخدمة:</p>
+      <p style="text-align: center; font-size: 1.2rem; color: var(--gold); margin: 6px 0;">★★★★★ (5.0 نجوم)</p>
       <a href="https://maps.google.com" target="_blank" class="action-link-btn">تقييمنا الآن على خرائط جوجل</a>
     </div>
 
-    <!-- 3. لوحة الكارت الإلكتروني -->
+    <!-- 3. لوحة الكارت الإلكتروني الشخصي -->
     <div id="cardPanel" class="content-panel">
-      <h3><span>📇 الكارت الإلكتروني وبطاقة الولاء</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
-      <p>بطاقة العضوية الخاصة بك (VIP Member Pass):</p>
-      <p><strong>اسم العميل:</strong> ضيف مميز<br><strong>رقم العضوية:</strong> #VIP-2026-99<br><strong>المزايا:</strong> خصم 15% على المشتريات القادمة</p>
-      <a href="#" class="action-link-btn" onclick="alert('تم حفظ البطاقة في محفظة الهاتف بنجاح!'); return false;">حفظ البطاقة في الهاتف</a>
+      <h3><span>📇 البطاقة التعريفية الرقمية</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
+      <div class="digital-card-box">
+        <h4>نبيل النمر</h4>
+        <p>مبتكر ومطور الحلول التقنية (Phygital & NFC)</p>
+        <p style="color: var(--gold); direction: ltr; font-weight: bold;">+966 50 277 7884</p>
+      </div>
+      <a href="https://wa.me/966502777884" target="_blank" class="action-link-btn">حفظ الاتصال / مراسلة واتساب</a>
     </div>
 
-    <!-- 4. لوحة التواصل والعروض -->
+    <!-- 4. لوحة التواصل -->
     <div id="contactPanel" class="content-panel">
       <h3><span>🌐 التواصل والعروض</span> <button class="close-btn" onclick="closePanel()">✕</button></h3>
-      <p>تابعنا على منصات التواصل الاجتماعي واستفد من عروضنا الموسمية:</p>
-      <ul>
-        <li>حسابنا على إنستغرام وتويتر (X)</li>
-        <li>عروض نهاية الأسبوع الحصرية</li>
-      </ul>
+      <p>استفسر عن دمج هذه التقنية في نشاطك التجاري:</p>
       <a href="https://wa.me/966502777884" target="_blank" class="action-link-btn">تواصل عبر واتساب المباشر</a>
     </div>
 
     <div class="hub-footer">
-      تطوير وتشغيل الحلول التقنية بواسطة: <strong>مبتكر الحلول الرقمية</strong><br>
+      ابتكار وتطوير: <strong>نبيل النمر</strong><br>
       جميع الحقوق محفوظة © 2026
     </div>
   </div>
 
   <script>
     function showPanel(panelId) {
-      // إخفاء جميع اللوحة المفتوحة أولاً
       const panels = document.querySelectorAll('.content-panel');
       panels.forEach(panel => panel.classList.remove('active'));
-      
-      // إظهار اللوحة المطلوبة
       document.getElementById(panelId).classList.add('active');
     }
 
     function closePanel() {
       const panels = document.querySelectorAll('.content-panel');
       panels.forEach(panel => panel.classList.remove('active'));
+    }
+
+    function addToCart(itemName) {
+      const statusDiv = document.getElementById('cartStatus');
+      statusDiv.innerHTML = `✓ تمت إضافة (${itemName}) إلى الطلب بنجاح!`;
+      setTimeout(() => {
+        statusDiv.innerHTML = '';
+      }, 3000);
     }
   </script>
 
